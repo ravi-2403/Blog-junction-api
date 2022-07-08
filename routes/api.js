@@ -5,7 +5,7 @@ require('dotenv').config();
 
 //Home page
 router.get('/',(req, res)=>{
-    res.status(200).json({"msg":"Welcome to the blog junction api!!!"})
+    res.status(200).json({"msg":"Welcome to the blog junction api!!!"});
 });
 
 //post the blogs
@@ -26,10 +26,10 @@ router.get('/blogs',async (req,res)=>{
     try{
         await db.collection('blogs')
             .find({})
-            .forEach(async (blog)=>{
+            .forEach((blog)=>{
                 delete blog._id;
                 delete blog.__v;
-                await blogs.push(blog);
+                blogs.push(blog);
         })
         res.status(200).json(blogs);
     }catch(err){
