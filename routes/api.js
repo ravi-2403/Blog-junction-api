@@ -100,4 +100,20 @@ router.get(`/show-get-a-call-back/${process.env.API_KEY}`,async (req,res)=>{
     }
 })
 
+
+/*
+    Api for the condicting the test
+*/ 
+router.post("/newregistration-for-test",async (req,res)=>{
+    const data = req.body;
+    try{
+        console.log(data)
+        await db.collection('vitaraTest').insertOne(data)
+        res.status(200).json({msg:"data sent!!! you can proceed for the test"})
+    }catch(err){
+        res.status(404).json({msg:`${err.message}`})
+    }
+    
+});
+
 module.exports = router;
